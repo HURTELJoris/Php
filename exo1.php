@@ -10,12 +10,15 @@
     <body>
         <?php 
             $NombreAleatoire = rand ( 0 , 100 );
-            if $NombreAleatoire%2 == 1
+            ?>
+            <p> Si mon nombre aléatoire est paire j'affiche du rouge, sinon j'affiche du bleu</p>
+            <?php
+            if ($NombreAleatoire%2 == 1)
             {
             ?>
-                <div id = 'impaire'>
+                <div id = 'impair'>
                     <?php
-                    echo $NombreAleatoire."est impaire";
+                    echo $NombreAleatoire." est impair";
                     ?>
                 </div>
             <?php
@@ -23,9 +26,9 @@
             else
             {
             ?>
-                <div id = 'paire'>
+                <div id = 'pair'>
                     <?php
-                    echo $NombreAleatoire."est paire";
+                    echo $NombreAleatoire." est pair";
                     ?>
                 </div>
             <?php
