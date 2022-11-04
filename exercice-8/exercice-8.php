@@ -21,6 +21,8 @@
         <form method="get">
             Entrez votre texte : <input type="text" name="texte">
             <input type="submit">
+            <a href="logout.php"><button>Réinitialiser</button></a>
+
         </form>
         
         <?php
@@ -62,6 +64,7 @@
                     // Sinon le texte $_GET['texte'] est écrit en violet
                     echo "<div>La variable actuelle est : <span id='violet'>".$_GET['texte']."</span></div>";
                     echo "<div>Il n'y a pas de variable mémorisée</div>";
+                    reset($_SESSION);
                     $_SESSION["mem"] = "<span id='violet'>".$_GET['texte']."</span>";
                 }
             }

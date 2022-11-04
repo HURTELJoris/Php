@@ -9,31 +9,29 @@
 
     <body>
        
-        <style> #titre {margin-bottom:50px} #rouge{color: red ; text-align: center ; justify-content: center ; size: 300%; }</style>
+        <style> #titre {margin-bottom:50px} div{text-align: center ; justify-content: center ; size: 300%; } #rouge{color: red ; }</style>
 
         <p id="titre">Créer un petit formulaire avec une zone de text et un bouton. Lorsque vous cliquer sur le 
             bouton la page doit afficher ce que vous avez saisie en rouge. Utilisez $_POST[‘champ1’]</p>
 
-        <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+        <form method="post">
             Entrez votre texte : <input type="text" name="texte">
             <input type="submit">
         </form>
 
         <?php
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") 
+        if (!empty($_POST)) 
         {
   
-            $text = $_POST['texte'];
-
-            if (empty($text)) 
+            if (empty($_POST['texte'])) 
             {
-                echo "Il n'y a pas de texte !";
+                echo "<div>Il n'y a pas de texte !</div>";
             } 
 
             else 
             {
-                echo "<div id='rouge'>".$text."</div>";
+                echo "<div id='rouge'>".$_POST['texte']."</div>";
             }
         }
 
