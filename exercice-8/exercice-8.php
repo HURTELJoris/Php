@@ -21,7 +21,7 @@
         <form method="get">
             Entrez votre texte : <input type="text" name="texte">
             <input type="submit">
-            <a href="logout.php"><button>Réinitialiser</button></a>
+            <input type="submit" value="Deconnexion" name="Deconnexion" >
 
         </form>
         
@@ -69,7 +69,12 @@
                 }
             }
         }
-            
+
+        if(isset($_POST["Deconnexion"]))
+        {
+        session_unset();
+        session_destroy();
+        }    
         ?>
         
     </body>
