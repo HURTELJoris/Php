@@ -26,7 +26,11 @@
         </form>
         
         <?php
-
+        if(isset($_GET["Deconnexion"]))
+        {
+        session_unset();
+        session_destroy();
+        } 
         if (!empty($_GET))
         // Si le tableau $_GET existe alors le formulaire a été envoyé
         {
@@ -70,11 +74,7 @@
             }
         }
 
-        if(isset($_POST["Deconnexion"]))
-        {
-        session_unset();
-        session_destroy();
-        }    
+   
         ?>
         
     </body>

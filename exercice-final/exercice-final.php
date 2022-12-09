@@ -20,7 +20,11 @@
 
     
         <?php
-
+        if(isset($_POST["Deconnexion"]))
+        {
+        session_unset();
+        session_destroy();
+        }
         if(isset($_POST["Valider"]))
         {
             if($_POST["password"]=="1234" && $_POST["login"]=="julien" )
@@ -42,11 +46,7 @@
             }
         }
         
-        if(isset($_POST["Deconnexion"]))
-        {
-        session_unset();
-        session_destroy();
-        }
+
 
         //si il y a une session on affiche le site sinon ça sera le formulaire de connexion
         if((isset($_SESSION["EtatConnexion"]) && $_SESSION["EtatConnexion"]==true))
