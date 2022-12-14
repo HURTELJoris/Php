@@ -1,10 +1,10 @@
-<?php session_start()?>
+<?php session_start()?> 
 <!doctype html>
 <html lang="fr">
     <head>
         <meta charset="utf-8">
         <title>Exercice final</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css">                                                                                                    
         <script src="script.js"></script>    
     </head>
 
@@ -20,38 +20,25 @@
 
     
         <?php
+
         if(isset($_POST["Deconnexion"]))
-        {
-        session_unset();
-        session_destroy();
+        {   
+            //Si on appuie sur le bouton "Deconnexion", on supprime les données de la session et on la détruit.
+            session_unset();
+            session_destroy();
         }
-        if(isset($_POST["Valider"]))
+       
+        if(isset($_POST["Valider"]) && $_POST["password"]=="1234" && $_POST["login"]=="Julien")
         {
-            if($_POST["password"]=="1234" && $_POST["login"]=="julien" )
-            {
-            //si identifié alors session true
-            $_SESSION["EtatConnexion"]=true ;
-            }
+                /*Si on a appuyé sur le bouton valider, que l'indentifiant est "Julien" et que le mot de passe est "1234", 
+                alors nous somme identifiés. On le met dans la variable "EtatConnexion" qu'on met à "true", soit vraie. */
+                $_SESSION["EtatConnexion"] = true ; 
         }
-        else
+
+        if(isset($_SESSION["EtatConnexion"]) && $_SESSION["EtatConnexion"]==true)
         {
-            if($_POST["password"]!="1234")
-            {
-            echo "Ce n'est pas le bon mdp";
-            }
-
-            if($_POST["login"]!="julien")
-            {
-            echo "Ce n'est pas le bon Login";
-            }
-        }
-        
-
-
-        //si il y a une session on affiche le site sinon ça sera le formulaire de connexion
-        if((isset($_SESSION["EtatConnexion"]) && $_SESSION["EtatConnexion"]==true))
-        {
-        ?>
+            //Si on est connecté, alors on affiche "Bienvenue sur le site", avec un bouton de déconnexion.
+        ?>       
             <p>Bienvenue sur le site</p>
             <form action="" method="post" class="form-example">
                 <div class="form-example">
@@ -61,8 +48,8 @@
 
         <?php
         }
-        else
-        {
+        else 
+        {   //Sinon, on n'est pas encore connecté, alors on affiche le formulaire de connexion.
         ?>
             <form action="" method="post">
                 <fieldset>
@@ -80,6 +67,19 @@
             </form>
         <?php 
         }
+      
+        if(isset($_POST["Valider"])) //Si on appuie sur le bouton "Valider", et que soit le l'identifiant, soit le mot de passe est faux, on affiche les messages d'erreur.
+        {
+                if($_POST["login"]!="Julien")
+                {
+                    echo "<p>Ce n'est pas le bon Login !</p>";
+                }
+                if($_POST["password"]!="1234")
+                {
+                    echo "<p>Ce n'est pas le bon mdp !</p>";
+                }       
+        }
+       
         ?>
 
     </body>
